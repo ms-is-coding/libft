@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 01:35:01 by smamalig          #+#    #+#             */
-/*   Updated: 2025/02/12 01:36:34 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/04/03 20:30:41 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*list;
 
-	list = malloc(sizeof(t_list));
+	list = ft_calloc(1, sizeof(t_list));
 	if (!list)
 		return (NULL);
 	list->content = content;

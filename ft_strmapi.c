@@ -6,13 +6,13 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 22:22:28 by smamalig          #+#    #+#             */
-/*   Updated: 2025/02/11 22:27:19 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/04/03 20:27:45 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(const char *s, char (*f)(size_t, char))
+char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 {
 	char	*copy;
 	size_t	i;
