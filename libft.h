@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 23:32:58 by smamalig          #+#    #+#             */
-/*   Updated: 2025/03/13 10:41:05 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/04/28 14:04:35 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <stddef.h>
 # include <stdint.h>
 # include <unistd.h>
+
+# define SIZE_MAX __SIZE_MAX__
 
 /**********************/
 /* LibFT #1 functions */
@@ -55,13 +57,13 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t n);
 /* LibFT #2 functions */
 /**********************/
 
-char	*ft_substr(const char *s, size_t start, size_t size);
+char	*ft_substr(const char *s, unsigned int start, size_t size);
 char	*ft_strjoin(const char *s1, const char *s2);
 char	*ft_strtrim(const char *s, const char *trim);
 char	**ft_split(const char *s, char delim);
 char	*ft_itoa(int n);
-char	*ft_strmapi(const char *s, char (*f)(size_t, char));
-void	ft_striteri(char *s, void (*f)(size_t, char *));
+char	*ft_strmapi(const char *s, char (*f)(unsigned int, char));
+void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(const char *s, int fd);

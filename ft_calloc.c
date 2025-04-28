@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:15:48 by smamalig          #+#    #+#             */
-/*   Updated: 2025/02/10 16:33:53 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/04/28 11:53:14 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_calloc(size_t n, size_t size)
 	bool	overflow;
 	void	*ptr;
 
-	overflow = (size != 0) && (n > SIZE_MAX / size);
+	overflow = ((size != 0) && (n > SIZE_MAX / size));
 	if (overflow)
 	{
 		errno = EOVERFLOW;
