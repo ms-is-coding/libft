@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 01:50:39 by smamalig          #+#    #+#             */
-/*   Updated: 2025/04/07 00:04:19 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/04/28 22:42:22 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list	*ft_lstmap(t_list *list, void *(*f)(void *), void (*del)(void *))
 	t_list	*ref;
 	t_list	*temp;
 
-	if (!list)
+	if (!list || !f || !del)
 		return (NULL);
 	new = ft_lstnew(f(list->content));
 	ref = new;
@@ -26,10 +26,13 @@ t_list	*ft_lstmap(t_list *list, void *(*f)(void *), void (*del)(void *))
 	while (list)
 	{
 		ref->next = ft_lstnew(f(list->content));
+		if (!ref->next)
+			return (new);
 		ref = ref->next;
 		temp = list;
 		list = list->next;
-		ft_lstdelone(temp, del);
+		del(temp->content);
+		free(temp);
 	}
 	return (new);
 }

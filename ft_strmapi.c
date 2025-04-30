@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 22:22:28 by smamalig          #+#    #+#             */
-/*   Updated: 2025/04/03 20:27:45 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/04/28 22:39:15 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 	size_t	i;
 
 	copy = ft_strdup(s);
+	if (!copy)
+		return (NULL);
 	i = 0;
 	while (s[i])
 	{
