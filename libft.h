@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 23:32:58 by smamalig          #+#    #+#             */
-/*   Updated: 2025/04/03 20:28:03 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/04/30 08:24:07 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <stddef.h>
 # include <stdint.h>
 # include <unistd.h>
+
+# define SIZE_MAX __SIZE_MAX__
 
 /**********************/
 /* LibFT #1 functions */
@@ -55,7 +57,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t n);
 /* LibFT #2 functions */
 /**********************/
 
-char	*ft_substr(const char *s, size_t start, size_t size);
+char	*ft_substr(const char *s, unsigned int start, size_t size);
 char	*ft_strjoin(const char *s1, const char *s2);
 char	*ft_strtrim(const char *s, const char *trim);
 char	**ft_split(const char *s, char delim);
