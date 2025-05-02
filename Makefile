@@ -6,13 +6,13 @@
 #    By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 23:24:42 by smamalig          #+#    #+#              #
-#    Updated: 2025/05/02 11:01:36 by smamalig         ###   ########.fr        #
+#    Updated: 2025/05/02 11:03:42 by smamalig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME        = libft.a
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror
+CFLAGS      = -Wall -Wextra
 SRCS        = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 	ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c ft_memcmp.c \
 	ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c ft_putendl_fd.c \
@@ -29,9 +29,9 @@ INCLUDES    = -Ilibft.h
 HEADER      = libft.h
 
 ifeq ($(DEBUG), 1)
-	CFLAGS += -g3 -O0
+	CFLAGS += -g3 -O0 -Wpedantic
 else
-	CFLAGS += -O3
+	CFLAGS += -O3 -Werror
 endif
 
 # Colors
