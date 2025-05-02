@@ -6,14 +6,14 @@
 #    By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 23:24:42 by smamalig          #+#    #+#              #
-#    Updated: 2025/04/23 19:01:32 by smamalig         ###   ########.fr        #
+#    Updated: 2025/05/02 10:51:29 by smamalig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME        = libft.a
 CC          = cc
 CPP         = c++
-CFLAGS      = -Wall -Wextra -Werror -g3 -O3
+CFLAGS      = -Wall -Wextra -Werror
 SRCS        = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 	ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c ft_memcmp.c \
 	ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c ft_putendl_fd.c \
@@ -31,6 +31,12 @@ TEST_OBJS   = $(TEST_SRCS:%.cpp=%.o)
 INCLUDES    = -Ilibft.h
 HEADER      = libft.h
 
+ifeq ($(DEBUS), 1)
+	CFLAGS += -g3 -O0 -Wpedantic
+else
+	CFLAGS += -O3
+endif
+
 # Colors
 RED         = \e[31m
 GREEN       = \e[32m
@@ -46,7 +52,7 @@ $(NAME): $(OBJS)
 	@printf "$(BLUE)%12s$(RESET): $(YELLOW)Building$(RESET) $(NAME)\n" $(NAME)
 	@ar rcs $(NAME) $(OBJS)
 
-bonus: $(BONUS_OBJS)
+bonus: all $(BONUS_OBJS)
 	@printf "$(BLUE)%12s$(RESET): $(YELLOW)Including$(RESET) bonus $(NAME) files\n" $(NAME)
 	@ar rcs $(NAME) $(BONUS_OBJS)
 

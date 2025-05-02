@@ -6,69 +6,83 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:43:48 by smamalig          #+#    #+#             */
-/*   Updated: 2025/04/28 23:14:44 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/02 10:46:41 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_subs(const char *s, char delim)
+static int	ft_is_sep(char *str, char charset)
 {
-	int	count;
-	int	set;
-
-	count = 0;
-	set = 1;
-	if (!s)
+	if (*str == charset)
 		return (1);
-	while (*s)
-	{
-		if (set && *s == delim)
-		{
-			count++;
-			set = 0;
-		}
-		else if (*s != delim)
-			set = 1;
-		s++;
-	}
-	return (count + 1);
+	return (0);
 }
 
-static void	ft_split_inner(const char *s, char delim, char **retval)
+static int	ft_count_letters(char *str, char charset)
 {
-	int		set;
-	char	*start;
+	int		i;
 
-	set = 0;
-	start = (char *)s;
-	while (*s)
-	{
-		if (*s == delim)
-		{
-			if (set)
-				*retval++ = ft_substr(start, 0, s - start);
-			set = 0;
-			start = (char *)s + 1;
-		}
-		if (*s != delim)
-			set = 1;
-		s++;
-	}
-	if (set)
-		*retval++ = ft_substr(start, 0, s - start);
-	*retval = 0;
+	i = 0;
+	while (str[i] && !(ft_is_sep(str + i, charset)))
+		i++;
+	return (i);
 }
 
-char	**ft_split(const char *s, char delim)
+static int	ft_count_words(char *str, char charset)
 {
-	char	**retval;
+	int		i;
+	int		j;
 
-	retval = malloc(sizeof(char *) * count_subs(s, delim));
-	if (!retval)
+	j = 0;
+	while (*str)
+	{
+		if (*str && ft_is_sep(str, charset))
+			str++;
+		i = ft_count_letters(str, charset);
+		str += i;
+		if (i)
+			j++;
+	}
+	return (j);
+}
+
+static char	*ft_strndup(char *str, int size)
+{
+	char	*dest;
+
+	dest = malloc(sizeof(char) * (size + 1));
+	if (!dest)
 		return (NULL);
-	if (!s)
-		return (retval);
-	ft_split_inner(s, delim, retval);
-	return (retval);
+	dest[size] = '\0';
+	while (size--)
+		dest[size] = str[size];
+	return (dest);
+}
+
+char	**ft_split(const char *s, char c)
+{
+	char	**str;
+	int		size;
+	int		i;
+	int		j;
+
+	i = 0;
+	size = ft_count_words((char *)s, c);
+	str = malloc(sizeof(char *) * (size + 1));
+	if (!str)
+		return (NULL);
+	while (i < size)
+	{
+		while (*s && ft_is_sep((char *)s, c))
+			s++;
+		j = ft_count_letters((char *)s, c);
+		str[i] = ft_strndup((char *)s, j);
+		if (!str[i])
+			return (NULL);
+		s += j;
+		i++;
+	}
+	str[size] = 0;
+	return (str);
 }
