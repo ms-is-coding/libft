@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 23:32:58 by smamalig          #+#    #+#             */
-/*   Updated: 2025/04/30 08:24:07 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/02 14:18:48 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 # include <stdint.h>
 # include <unistd.h>
 
-# define SIZE_MAX __SIZE_MAX__
+# ifndef SIZE_MAX
+#  define SIZE_MAX __SIZE_MAX__
+# endif
 
 /**********************/
 /* LibFT #1 functions */
