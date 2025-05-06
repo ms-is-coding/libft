@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:46:26 by smamalig          #+#    #+#             */
-/*   Updated: 2025/02/14 13:39:07 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/05 17:18:13 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int	ft_atoi(const char *s)
 	if (*s == '+' || *s == '-')
 		sign = 44 - *s++;
 	while (ft_isdigit(*s))
-		value = value * 10 + *s++ - '0';
+		value = (value << 3) + (value << 1) + *s++ - '0';
 	return (sign * value);
 }

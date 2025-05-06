@@ -6,7 +6,7 @@
 #    By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 23:24:42 by smamalig          #+#    #+#              #
-#    Updated: 2025/05/02 11:03:42 by smamalig         ###   ########.fr        #
+#    Updated: 2025/05/06 14:44:46 by smamalig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ BONUS_SRCS  = ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c \
 	ft_lstlast_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c ft_lstmap_bonus.c
 OBJS        = $(SRCS:.c=.o)
 BONUS_OBJS  = $(BONUS_SRCS:.c=.o)
-INCLUDES    = -Ilibft.h
+INCLUDES    = -I.
 HEADER      = libft.h
 
 ifeq ($(DEBUG), 1)
@@ -67,4 +67,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

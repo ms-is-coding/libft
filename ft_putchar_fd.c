@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:50:51 by smamalig          #+#    #+#             */
-/*   Updated: 2025/02/09 16:51:50 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/06 14:45:04 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, 1);
+	if (write(fd, &c, 1) < 0)
+		return ;
 }
