@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 01:50:39 by smamalig          #+#    #+#             */
-/*   Updated: 2025/05/02 10:42:21 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/07 10:49:02 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		new = ft_lstnew(f(lst->content));
 		if (!new)
 		{
-			while (tmp)
-			{
-				new = tmp->next;
-				del(tmp->content);
-				free(tmp);
-				tmp = new;
-			}
+			ft_lstclear(&tmp, del);
 			return (NULL);
 		}
 		ft_lstadd_back(&tmp, new);

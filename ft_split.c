@@ -6,48 +6,41 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:43:48 by smamalig          #+#    #+#             */
-/*   Updated: 2025/05/02 10:46:41 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/07 10:47:15 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_is_sep(char *str, char charset)
+static int	ft_count_letters(char *s, char sep)
 {
-	if (*str == charset)
-		return (1);
-	return (0);
-}
-
-static int	ft_count_letters(char *str, char charset)
-{
-	int		i;
+	int	i;
 
 	i = 0;
-	while (str[i] && !(ft_is_sep(str + i, charset)))
+	while (s[i] && s[i] != sep)
 		i++;
 	return (i);
 }
 
-static int	ft_count_words(char *str, char charset)
+static int	ft_count_words(char *s, char sep)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	j = 0;
-	while (*str)
+	while (*s)
 	{
-		if (*str && ft_is_sep(str, charset))
-			str++;
-		i = ft_count_letters(str, charset);
-		str += i;
+		if (*s && *s == sep)
+			s++;
+		i = ft_count_letters(s, sep);
+		s += i;
 		if (i)
 			j++;
 	}
 	return (j);
 }
 
-static char	*ft_strndup(char *str, int size)
+static char	*ft_strndup(char *s, int size)
 {
 	char	*dest;
 
@@ -56,33 +49,33 @@ static char	*ft_strndup(char *str, int size)
 		return (NULL);
 	dest[size] = '\0';
 	while (size--)
-		dest[size] = str[size];
+		dest[size] = s[size];
 	return (dest);
 }
 
 char	**ft_split(const char *s, char c)
 {
-	char	**str;
+	char	**arr;
 	int		size;
 	int		i;
 	int		j;
 
 	i = 0;
 	size = ft_count_words((char *)s, c);
-	str = malloc(sizeof(char *) * (size + 1));
-	if (!str)
+	arr = malloc(sizeof(char *) * (size + 1));
+	if (!arr)
 		return (NULL);
 	while (i < size)
 	{
-		while (*s && ft_is_sep((char *)s, c))
+		while (*s && *s == c)
 			s++;
 		j = ft_count_letters((char *)s, c);
-		str[i] = ft_strndup((char *)s, j);
-		if (!str[i])
+		arr[i] = ft_strndup((char *)s, j);
+		if (!arr[i])
 			return (NULL);
 		s += j;
 		i++;
 	}
-	str[size] = 0;
-	return (str);
+	arr[size] = 0;
+	return (arr);
 }
