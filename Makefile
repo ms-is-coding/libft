@@ -6,7 +6,7 @@
 #    By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 23:24:42 by smamalig          #+#    #+#              #
-#    Updated: 2025/05/06 14:44:46 by smamalig         ###   ########.fr        #
+#    Updated: 2025/05/07 09:52:07 by smamalig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ clean:
 
 fclean: clean
 	@printf "$(BLUE)%s$(RESET): $(RED)Removing$(RESET) executables and libraries\n" $(NAME)
-	@rm -f $(NAME) a.out
+	@rm -f $(NAME)
 
 re: fclean all
 
