@@ -6,76 +6,72 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:43:48 by smamalig          #+#    #+#             */
-/*   Updated: 2025/05/07 10:47:15 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/08 23:00:02 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_count_letters(char *s, char sep)
+static int	count_words(const char *s, char delim)
 {
-	int	i;
+	int	count;
+	int	in_word;
 
-	i = 0;
-	while (s[i] && s[i] != sep)
-		i++;
-	return (i);
-}
-
-static int	ft_count_words(char *s, char sep)
-{
-	int	i;
-	int	j;
-
-	j = 0;
+	count = 0;
+	in_word = 0;
+	if (!s)
+		return (1);
 	while (*s)
 	{
-		if (*s && *s == sep)
-			s++;
-		i = ft_count_letters(s, sep);
-		s += i;
-		if (i)
-			j++;
+		if (*s != delim)
+		{
+			if (!in_word)
+			{
+				count++;
+				in_word = 1;
+			}
+		}
+		else
+			in_word = 0;
+		s++;
 	}
-	return (j);
+	return (count + 1);
 }
 
-static char	*ft_strndup(char *s, int size)
+static void	ft_split_inner(const char *s, char delim, char **retval)
 {
-	char	*dest;
+	int		set;
+	char	*start;
 
-	dest = malloc(sizeof(char) * (size + 1));
-	if (!dest)
-		return (NULL);
-	dest[size] = '\0';
-	while (size--)
-		dest[size] = s[size];
-	return (dest);
-}
-
-char	**ft_split(const char *s, char c)
-{
-	char	**arr;
-	int		size;
-	int		i;
-	int		j;
-
-	i = 0;
-	size = ft_count_words((char *)s, c);
-	arr = malloc(sizeof(char *) * (size + 1));
-	if (!arr)
-		return (NULL);
-	while (i < size)
+	set = 0;
+	start = (char *)s;
+	while (*s)
 	{
-		while (*s && *s == c)
-			s++;
-		j = ft_count_letters((char *)s, c);
-		arr[i] = ft_strndup((char *)s, j);
-		if (!arr[i])
-			return (NULL);
-		s += j;
-		i++;
+		if (*s == delim)
+		{
+			if (set)
+				*retval++ = ft_substr(start, 0, s - start);
+			set = 0;
+			start = (char *)s + 1;
+		}
+		if (*s != delim)
+			set = 1;
+		s++;
 	}
-	arr[size] = 0;
-	return (arr);
+	if (set)
+		*retval++ = ft_substr(start, 0, s - start);
+	*retval = 0;
+}
+
+char	**ft_split(const char *s, char delim)
+{
+	char	**retval;
+
+	retval = malloc(sizeof(char *) * count_words(s, delim));
+	if (!retval)
+		return (NULL);
+	if (!s)
+		return (retval);
+	ft_split_inner(s, delim, retval);
+	return (retval);
 }
