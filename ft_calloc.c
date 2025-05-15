@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:15:48 by smamalig          #+#    #+#             */
-/*   Updated: 2025/05/06 14:48:55 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/13 16:33:24 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void	*ft_calloc(size_t n, size_t size)
 {
-	bool	overflow;
 	void	*ptr;
 
-	overflow = ((size != 0) && (n > SIZE_MAX / size));
-	if (overflow)
+	if ((size != 0) && (n > SIZE_MAX / size))
 		return (NULL);
 	ptr = malloc(n * size);
 	if (!ptr)
