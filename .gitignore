@@ -1,0 +1,7 @@
+main.cpp
+test.cpp
+test.hpp
+compile_commands.json
+.cache/
+*.o
+libft.a

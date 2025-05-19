@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 15:36:05 by smamalig          #+#    #+#             */
-/*   Updated: 2025/03/06 16:26:56 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:28:56 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	ft_isalnum(int c)
 {
-	return (ft_isalpha(c) | ft_isdigit(c));
+	return (ft_isalpha(c) || ft_isdigit(c));
 }
